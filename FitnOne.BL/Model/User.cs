@@ -17,11 +17,11 @@ namespace FitnOne.BL.Model
         /// <summary>
         /// Gender.
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }//Need fix
         /// <summary>
         /// Day of birth.
         /// </summary>
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; }//Need fix
         /// <summary>
         /// Weight.
         /// </summary>
@@ -30,8 +30,14 @@ namespace FitnOne.BL.Model
         /// Height.
         /// </summary>
         public double Height { get; set; }
-        #endregion
 
+        /* 
+         * DateTime nowDate = DateTime.Today;
+         * int age = nowDate.Year - birthDate.Year;
+         * if(birthDate > nowDate.AddYears(-age)) age--;
+         */
+        public int Age { get { return DateTime.Now.Year - BirthDate.Year; } }
+        #endregion
         /// <summary>
         /// Create new user.
         /// </summary>
@@ -72,9 +78,17 @@ namespace FitnOne.BL.Model
             Weight = weight;
             Height = height;
         }
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Name cannot be null or empty", nameof(name));
+            }
+            Name = name;
+        }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
     }
 }
