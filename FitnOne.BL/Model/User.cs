@@ -6,6 +6,7 @@ namespace FitnOne.BL.Model
     /// <summary>
     /// User.
     /// </summary>
+    [Serializable]
     public class User
     {
         #region Properties
