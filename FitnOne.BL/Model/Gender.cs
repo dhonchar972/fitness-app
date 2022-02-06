@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace FitnOne.BL.Model
+namespace FitnessApp.BL.Model
 {
     /// <summary>
     /// Gender.
@@ -10,7 +10,7 @@ namespace FitnOne.BL.Model
     public class Gender
     {
         /// <summary>
-        /// Name.
+        /// Name of gender.
         /// </summary>
         public string Name { get; }
         /// <summary>

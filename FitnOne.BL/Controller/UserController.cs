@@ -1,11 +1,11 @@
-﻿using FitnOne.BL.Model;
+﻿using FitnessApp.BL.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace FitnOne.BL.Controller
+namespace FitnessApp.BL.Controller
 {
     /// <summary>
     /// User controller.
@@ -13,10 +13,16 @@ namespace FitnOne.BL.Controller
     public class UserController
     {
         /// <summary>
-        /// Application user.
+        /// List of application users.
         /// </summary>
         public List<User> Users { get; }
+        /// <summary>
+        /// Curent user.
+        /// </summary>
         public User CurentUser { get; }
+        /// <summary>
+        /// Stores the state of user (new or registered).
+        /// </summary>
         public bool IsNewUser { get; } = false;
         /// <summary>
         /// Сreating a new user controller.
@@ -62,9 +68,16 @@ namespace FitnOne.BL.Controller
                 }
             }
         }
+        /// <summary>
+        /// Receives user data, enters and saves it.
+        /// </summary>
+        /// <param name="genderName">User gender.</param>
+        /// <param name="birthDate">User birth date.</param>
+        /// <param name="weight">User weight.</param>
+        /// <param name="height">User height.</param>
         public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
         {
-            //Check
+            //TODO: Add checkup.
             CurentUser.Gender = new Gender(genderName);
             CurentUser.BirthDate = birthDate;
             CurentUser.Weight = weight;
