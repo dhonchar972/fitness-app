@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
-namespace FitnOne.BL.Controller.Tests
+namespace FitnessApp.BL.Controller.Tests
 {
     [TestClass()]
     public class UserControllerTests

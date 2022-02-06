@@ -1,8 +1,8 @@
-﻿using FitnOne.BL.Controller;
+﻿using FitnessApp.BL.Controller;
 using System;
 using System.Threading;
 
-namespace FitnOne.CMD
+namespace FitnessApp.CMD
 {
     internal class Program
     {

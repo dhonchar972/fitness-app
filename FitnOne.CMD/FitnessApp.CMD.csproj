@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FitnOne.BL\FitnOne.BL.csproj" />
+    <ProjectReference Include="..\FitnOne.BL\FitnessApp.BL.csproj" />
   </ItemGroup>
 
 </Project>
