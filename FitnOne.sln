@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnOne.BL", "FitnOne.BL\FitnOne.BL.csproj", "{CD0ACD24-64F8-4407-B057-C58C01AAD6EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnOne.BL", "FitnOne.BL\FitnOne.BL.csproj", "{CD0ACD24-64F8-4407-B057-C58C01AAD6EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnOne.CMD", "FitnOne.CMD\FitnOne.CMD.csproj", "{B4A6131D-F8AF-46EE-85CC-E93A8DB1E479}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnOne.CMD", "FitnOne.CMD\FitnOne.CMD.csproj", "{B4A6131D-F8AF-46EE-85CC-E93A8DB1E479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnOne.BLTests", "FitnOne.BLTests\FitnOne.BLTests.csproj", "{9AC416A2-DDEC-4435-905A-E96AFF9A6815}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B4A6131D-F8AF-46EE-85CC-E93A8DB1E479}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4A6131D-F8AF-46EE-85CC-E93A8DB1E479}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4A6131D-F8AF-46EE-85CC-E93A8DB1E479}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AC416A2-DDEC-4435-905A-E96AFF9A6815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AC416A2-DDEC-4435-905A-E96AFF9A6815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AC416A2-DDEC-4435-905A-E96AFF9A6815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AC416A2-DDEC-4435-905A-E96AFF9A6815}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
