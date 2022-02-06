@@ -28,6 +28,10 @@ namespace FitnOne.BL.Controller
             {
                 throw new ArgumentNullException("Name cannot by null or empty", nameof(userName));
             }
+            else if(userName.Length < 5 || userName.Length > 20)
+            {
+                throw new ArgumentException("Name cannot be smaller than 5 symbols and longer than 20", nameof(userName));
+            }
             Users = GetUsersData();
             CurentUser = Users.SingleOrDefault(user => user.Name == userName);
             if(CurentUser == null)
