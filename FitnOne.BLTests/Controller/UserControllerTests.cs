@@ -17,7 +17,7 @@ namespace FitnessApp.BL.Controller.Tests
         {
             //Arrange
             var rand = new Random();
-            var userName = rand.Next(100000, int.MaxValue).ToString();
+            var userName = "Aboba287";
             var birthDate = DateTime.Now.AddYears(-18);
             var weight = 90;
             var height = 190;

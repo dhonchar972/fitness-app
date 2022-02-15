@@ -1,17 +1,16 @@
 ﻿using FitnessApp.BL.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FitnessApp.BL.Controller
 {
     /// <summary>
     /// User controller.
     /// </summary>
-    public class UserController
+    public class UserController : ControllerBase
     {
+        private const string USERS_FILE_NAME = "D:\\FitnessApp\\FitnOne.BL\\Sources\\users.dat";
         /// <summary>
         /// List of application users.
         /// </summary>
@@ -34,20 +33,20 @@ namespace FitnessApp.BL.Controller
             {
                 throw new ArgumentNullException("Name cannot by null or empty", nameof(userName));
             }
-            else if(userName.Length < 5 || userName.Length > 20)
+            else if (userName.Length < 8 || userName.Length > 26)
             {
-                throw new ArgumentException("Name cannot be smaller than 5 symbols and longer than 20", nameof(userName));
+                throw new ArgumentException("Name cannot be smaller than 8 symbols and longer than 26", nameof(userName));
             }
             Users = GetUsersData();
             CurentUser = Users.SingleOrDefault(user => user.Name == userName);
-            if(CurentUser == null)
+            if (CurentUser == null)
             {
                 CurentUser = new User(userName);
                 Users.Add(CurentUser);
                 IsNewUser = true;
                 Save();
             }
-            
+
         }
         /// <summary>
         /// Get list of users.
@@ -55,18 +54,7 @@ namespace FitnessApp.BL.Controller
         /// <returns>New list.</returns>
         private List<User> GetUsersData()
         {
-            var formatter = new BinaryFormatter();
-            using (var fileStream = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                if (fileStream.Length > 0 && formatter.Deserialize(fileStream) is List<User> users)
-                {
-                    return users;
-                }
-                else
-                {
-                    return new List<User>();
-                }
-            }
+            return base.Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
         }
         /// <summary>
         /// Receives user data, enters and saves it.
@@ -89,12 +77,8 @@ namespace FitnessApp.BL.Controller
         /// </summary>
         private void Save()
         {
-            var formatter = new BinaryFormatter();
-            using (var fileStream = new FileStream("users.dat", FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fileStream, Users);
-            }
+            base.Save(USERS_FILE_NAME, Users);
         }
-        
+
     }
 }

@@ -6,6 +6,7 @@ namespace FitnessApp.BL.Model
     /// <summary>
     /// Food.
     /// </summary>
+    [Serializable]
     public class Food
     {
         #region Properties
@@ -34,7 +35,7 @@ namespace FitnessApp.BL.Model
         /// Create food product.
         /// </summary>
         /// <param name="name">Food name.</param>
-        public Food(string name) : this(name, 0.1, 0.1, 0.1, 0.1){}
+        public Food(string name) : this(name, 0.1, 0.1, 0.1, 0.1) { }
         /// <summary>
         /// Create food product.
         /// </summary>

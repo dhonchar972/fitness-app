@@ -65,19 +65,19 @@ namespace FitnessApp.BL.Model
         public User(string name, Gender gender, DateTime birthDate, double weight, double height) : this(name)
         {
             #region Parameter sheck
-            if(gender == null) 
+            if (gender == null)
             {
                 throw new ArgumentNullException("Gender cannot be null or empty", nameof(gender));
-            } 
-            if( (birthDate < DateTime.Parse("01.01.1900"))||(birthDate > DateTime.Now) )
+            }
+            if ((birthDate < DateTime.Parse("01.01.1900")) || (birthDate > DateTime.Now))
             {
                 throw new ArgumentException("Invalid date input", nameof(birthDate));
-            } 
-            if(weight <= 0) 
-            { 
-                throw new ArgumentException("Weight must be equal or greater than zero", nameof(weight)); 
             }
-            if(height <= 0) 
+            if (weight <= 0)
+            {
+                throw new ArgumentException("Weight must be equal or greater than zero", nameof(weight));
+            }
+            if (height <= 0)
             {
                 throw new ArgumentException("Height must be equal or greater than zero", nameof(height));
             }
@@ -87,7 +87,7 @@ namespace FitnessApp.BL.Model
             Weight = weight;
             Height = height;
         }
-       
+
         public override string ToString()
         {
             //TODO: Change implementations.

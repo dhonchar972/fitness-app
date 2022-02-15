@@ -11,8 +11,23 @@ namespace FitnessApp.CMD
             Console.WriteLine("Welcome to our new fitness app!");
             Thread.Sleep(3000);
             Console.Clear();
-            Console.Write("Please enter your username: ");         
-            var userController = new UserController(Console.ReadLine());
+            UserController userController;
+            while (true)
+            {
+                Console.Write("Please enter your username: ");
+                string name = Console.ReadLine();
+                if (String.IsNullOrEmpty(name))
+                {
+                    Console.WriteLine("Name cannot by empty");
+                }
+                else if (name.Length < 8 || name.Length > 26)
+                {
+                    Console.WriteLine("Name cannot be smaller than 8 symbols and longer than 26");
+                }
+                userController = new UserController(name);
+                break;
+            }
+
             if (userController.IsNewUser)
             {
                 Console.Write("Enter your gender: ");
