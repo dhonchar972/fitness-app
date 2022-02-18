@@ -1,4 +1,5 @@
 ﻿using FitnessApp.BL.Controller;
+using FitnessApp.BL.Model;
 using System;
 using System.Threading;
 
@@ -12,6 +13,7 @@ namespace FitnessApp.CMD
             Thread.Sleep(3000);
             Console.Clear();
             UserController userController;
+            EatingController eatingController;
             while (true)
             {
                 Console.Write("Please enter your username: ");
@@ -25,6 +27,7 @@ namespace FitnessApp.CMD
                     Console.WriteLine("Name cannot be smaller than 8 symbols and longer than 26");
                 }
                 userController = new UserController(name);
+                eatingController = new EatingController(userController.CurentUser);
                 break;
             }
 
@@ -38,6 +41,32 @@ namespace FitnessApp.CMD
                 userController.SetNewUserData(gender, birthDate, weight, height);
             }
             Console.WriteLine(userController.CurentUser);
+
+            Console.WriteLine("What do you want to do?");
+            Console.WriteLine("F1 - Input eating.");
+            var key = Console.ReadKey();
+            if(key.Key == ConsoleKey.F1)
+            {
+                var food = EnterEating();
+                eatingController.Add(food.Food, food.Weight);
+                foreach (var item in eatingController.Eating.Foods)
+                {
+                    Console.WriteLine($"\t{item.Key} - {item.Value}");
+                }
+            }
+        }
+
+        private static (Food Food, double Weight) EnterEating()
+        {
+            Console.Write("Input food name: ");
+            var name = Console.ReadLine();
+            var proteins = ParseDouble("proteins");
+            var fats = ParseDouble("fats");
+            var carbohydrates = ParseDouble("carbohydrates");
+            var calories = ParseDouble("calories");
+            var weight = ParseDouble("weight");
+            var product = new Food(name, proteins, fats, carbohydrates, calories);
+            return (Food: product, Weight: weight);
         }
 
         private static DateTime ParseDate()
@@ -45,7 +74,7 @@ namespace FitnessApp.CMD
             DateTime birthDate;
             while (true)
             {
-                Console.Write("Enter birth date (dd.MM.yyyy): ");
+                Console.Write("Enter birth date (mm.dd.yyyy): ");
                 if (DateTime.TryParse(Console.ReadLine(), out birthDate))
                 {
                     return birthDate;

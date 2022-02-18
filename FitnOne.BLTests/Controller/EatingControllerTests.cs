@@ -1,6 +1,7 @@
 ﻿using FitnessApp.BL.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 
 namespace FitnessApp.BL.Controller.Tests
 {
@@ -20,6 +21,9 @@ namespace FitnessApp.BL.Controller.Tests
 
             //Act
             eatingController.Add(food, 100);
+
+            //Assert
+            Assert.AreEqual(food.Name, eatingController.Eating.Foods.First().Key.Name);
         }
     }
 }
