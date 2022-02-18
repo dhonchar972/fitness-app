@@ -22,14 +22,14 @@ namespace FitnessApp.CMD.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MessagesRURU {
+    internal class MessagesEN_US {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MessagesRURU() {
+        internal MessagesEN_US() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FitnessApp.CMD.Languages {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitnessApp.CMD.Languages.MessagesRURU", typeof(MessagesRURU).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FitnessApp.CMD.Languages.MessagesEN-US", typeof(MessagesEN_US).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace FitnessApp.CMD.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Добро пожаловать в наше новое фитнес-приложение!.
+        ///   Looks up a localized string similar to Welcome to our new fitness app!.
         /// </summary>
         internal static string Hello {
             get {
@@ -70,7 +70,7 @@ namespace FitnessApp.CMD.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Пожалуйста, введите имя пользователя:.
+        ///   Looks up a localized string similar to Please enter your username:.
         /// </summary>
         internal static string NameInput {
             get {

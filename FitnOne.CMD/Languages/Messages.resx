@@ -121,6 +121,6 @@
     <value>Добро пожаловать в наше новое фитнес-приложение!</value>
   </data>
   <data name="NameInput" xml:space="preserve">
-    <value>Пожалуйста, введите имя пользователя:</value>
+    <value>Пожалуйста, введите имя пользователя: </value>
   </data>
 </root>

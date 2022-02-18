@@ -14,26 +14,35 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Languages\MessagesRURU.Designer.cs">
+    <Compile Update="Languages\Messages.Designer.cs">
+      <DependentUpon>Messages.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>MessagesRURU.resx</DependentUpon>
     </Compile>
-    <Compile Update="Languages\MessagesENUS.Designer.cs">
+    <Compile Update="Languages\Messages.en-us.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>MessagesENUS.resx</DependentUpon>
+      <DependentUpon>Messages.en-us.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Languages\Messages.ru-ru.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Messages.ru-ru.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Languages\MessagesRURU.resx">
+    <EmbeddedResource Update="Languages\Messages.resx">
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MessagesRURU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Languages\MessagesENUS.resx">
+    <EmbeddedResource Update="Languages\Messages.en-us.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MessagesENUS.Designer.cs</LastGenOutput>
+      <LastGenOutput>Messages.en-us.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Languages\Messages.ru-ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.ru-ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

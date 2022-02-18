@@ -11,16 +11,17 @@ namespace FitnessApp.CMD
     {
         static void Main(string[] args)
         {
-            var culture = CultureInfo.CreateSpecificCulture("EN-US");
-            var resourceManager = new ResourceManager("FitnessApp.FitnOne.CMD.Languages.MessagesENUS", typeof(Program).Assembly);
-            Console.WriteLine(resourceManager.GetString("Hello"));
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            var culture = CultureInfo.CurrentCulture;
+            var resourceManager = new ResourceManager("FitnessApp.CMD.Languages.Messages", typeof(Program).Assembly);
+            Console.WriteLine(resourceManager.GetString("Hello", culture));
             Thread.Sleep(3000);
             Console.Clear();
             UserController userController;
             EatingController eatingController;
             while (true)
             {
-                Console.Write(resourceManager.GetString("NameInput"));
+                Console.Write(resourceManager.GetString("NameInput", culture));
                 string name = Console.ReadLine();
                 if (String.IsNullOrEmpty(name))
                 {
