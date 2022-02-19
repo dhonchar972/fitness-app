@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Sources\" />
+    <Compile Remove="Sources\**" />
+    <EmbeddedResource Remove="Sources\**" />
+    <None Remove="Sources\**" />
   </ItemGroup>
 
 </Project>
