@@ -22,7 +22,7 @@ namespace FitnessApp.BL.Controller
 
         private List<Activity> GetAllActivities()
         {
-            return base.Load<List<Activity>>(ACTIVITIES_FILE_NAME) ?? new List<Activity>();
+            return base.Load<Activity>() ?? new List<Activity>();
         }
 
         public void Add(Activity activity, DateTime start, DateTime finish)
@@ -44,11 +44,12 @@ namespace FitnessApp.BL.Controller
         }
         private List<Exercise> GetAllExercises()
         {
-            return base.Load<List<Exercise>>(EXERCISES_FILE_NAME) ?? new List<Exercise>();
+            return base.Load<Exercise>() ?? new List<Exercise>();
         }
         private void Save()
         {
-            base.Save(EXERCISES_FILE_NAME, Exercises);
+            base.Save(Exercises);
+            base.Save(Activities);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace FitnessApp.BL.Controller.Tests
         public void SetNewUserDataTest()
         {
             //Arrange
-            var rand = new Random();
             var userName = "Aboba287";
             var birthDate = DateTime.Now.AddYears(-18);
             var weight = 90;
@@ -34,6 +33,18 @@ namespace FitnessApp.BL.Controller.Tests
             Assert.AreEqual(weight, controllerTwo.CurentUser.Weight);
             Assert.AreEqual(height, controllerTwo.CurentUser.Height);
             Assert.AreEqual(gender, controllerTwo.CurentUser.Gender.Name);
+        }
+        [TestMethod()]
+        public void SaveTest()
+        {
+            // Arrange
+            var userName = "Aboba1111";
+
+            // Act
+            var controller = new UserController(userName);
+
+            // Assert
+            Assert.AreEqual(userName, controller.CurentUser.Name);
         }
     }
 }

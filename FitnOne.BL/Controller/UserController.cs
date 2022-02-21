@@ -38,15 +38,13 @@ namespace FitnessApp.BL.Controller
                 throw new ArgumentException("Name cannot be smaller than 8 symbols and longer than 26", nameof(userName));
             }
             Users = GetUsersData();
-            CurentUser = Users.SingleOrDefault(user => user.Name == userName);
+            CurentUser = Users.SingleOrDefault(u => u.Name == userName);
             if (CurentUser == null)
             {
                 CurentUser = new User(userName);
                 Users.Add(CurentUser);
                 IsNewUser = true;
-                Save();
             }
-
         }
         /// <summary>
         /// Get list of users.
@@ -54,7 +52,7 @@ namespace FitnessApp.BL.Controller
         /// <returns>New list.</returns>
         private List<User> GetUsersData()
         {
-            return base.Load<List<User>>(USERS_FILE_NAME) ?? new List<User>();
+            return base.Load<User>() ?? new List<User>();
         }
         /// <summary>
         /// Receives user data, enters and saves it.
@@ -77,8 +75,7 @@ namespace FitnessApp.BL.Controller
         /// </summary>
         private void Save()
         {
-            base.Save(USERS_FILE_NAME, Users);
+            base.Save(Users);
         }
-
     }
 }
