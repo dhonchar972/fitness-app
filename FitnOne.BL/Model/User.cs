@@ -20,7 +20,7 @@ namespace FitnessApp.BL.Model
         /// <summary>
         /// User's gender.
         /// </summary>
-        public int? GenderId { get; set; }
+        public int GenderId { get; set; }
         public virtual Gender Gender { get; set; }//Need fix
         /// <summary>
         /// User's birthday.
