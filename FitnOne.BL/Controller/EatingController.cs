@@ -22,7 +22,7 @@ namespace FitnessApp.BL.Controller
         public void Add(Food food, double weight)
         {
             var product = Foods.SingleOrDefault(f => f.Name == food.Name);
-            if (product != null)
+            if (product == null)
             {
                 Foods.Add(food);
                 Eating.Add(food, weight);

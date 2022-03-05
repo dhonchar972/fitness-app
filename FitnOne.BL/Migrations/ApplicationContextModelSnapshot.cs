@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace FitnessApp.BL.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
@@ -15,16 +17,18 @@ namespace FitnessApp.BL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.22")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("FitnessApp.BL.Model.Activity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<double>("CaloriesPerMinute")
                         .HasColumnType("float");
@@ -41,8 +45,9 @@ namespace FitnessApp.BL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("FoodId")
                         .HasColumnType("int");
@@ -66,8 +71,9 @@ namespace FitnessApp.BL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("ActivityId")
                         .HasColumnType("int");
@@ -94,8 +100,9 @@ namespace FitnessApp.BL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<double>("Calories")
                         .HasColumnType("float");
@@ -121,8 +128,9 @@ namespace FitnessApp.BL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -136,13 +144,14 @@ namespace FitnessApp.BL.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GenderId")
+                    b.Property<int?>("GenderId")
                         .HasColumnType("int");
 
                     b.Property<double>("Height")
@@ -172,6 +181,8 @@ namespace FitnessApp.BL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FitnessApp.BL.Model.Exercise", b =>
@@ -187,15 +198,41 @@ namespace FitnessApp.BL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("FitnessApp.BL.Model.User", b =>
                 {
                     b.HasOne("FitnessApp.BL.Model.Gender", "Gender")
                         .WithMany("Users")
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GenderId");
+
+                    b.Navigation("Gender");
+                });
+
+            modelBuilder.Entity("FitnessApp.BL.Model.Activity", b =>
+                {
+                    b.Navigation("Exercises");
+                });
+
+            modelBuilder.Entity("FitnessApp.BL.Model.Food", b =>
+                {
+                    b.Navigation("Eatings");
+                });
+
+            modelBuilder.Entity("FitnessApp.BL.Model.Gender", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("FitnessApp.BL.Model.User", b =>
+                {
+                    b.Navigation("Eatings");
+
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

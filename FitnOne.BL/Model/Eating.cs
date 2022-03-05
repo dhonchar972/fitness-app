@@ -20,7 +20,7 @@ namespace FitnessApp.BL.Model
         /// <summary>
         /// Food and it quantity.
         /// </summary>
-        [NotMapped]
+        //[NotMapped]
         public Dictionary<Food, double> Foods { get; set; } //EROR!!!!!!11111111111111111111111111111111111111111111
         /// <summary>
         /// User.

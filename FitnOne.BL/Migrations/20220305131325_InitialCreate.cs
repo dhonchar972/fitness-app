@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace FitnessApp.BL.Migrations
 {
-    public partial class aboba : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,10 +13,10 @@ namespace FitnessApp.BL.Migrations
                 name: "Activities",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    CaloriesPerMinute = table.Column<double>(nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CaloriesPerMinute = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,13 +27,13 @@ namespace FitnessApp.BL.Migrations
                 name: "Foods",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Calories = table.Column<double>(nullable: false),
-                    Proteins = table.Column<double>(nullable: false),
-                    Fats = table.Column<double>(nullable: false),
-                    Carbohydrates = table.Column<double>(nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Calories = table.Column<double>(type: "float", nullable: false),
+                    Proteins = table.Column<double>(type: "float", nullable: false),
+                    Fats = table.Column<double>(type: "float", nullable: false),
+                    Carbohydrates = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,9 +44,9 @@ namespace FitnessApp.BL.Migrations
                 name: "Genders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -55,13 +57,13 @@ namespace FitnessApp.BL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    GenderId = table.Column<int>(nullable: false),
-                    BirthDate = table.Column<DateTime>(nullable: false),
-                    Weight = table.Column<double>(nullable: false),
-                    Height = table.Column<double>(nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GenderId = table.Column<int>(type: "int", nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Weight = table.Column<double>(type: "float", nullable: false),
+                    Height = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,19 +72,18 @@ namespace FitnessApp.BL.Migrations
                         name: "FK_Users_Genders_GenderId",
                         column: x => x.GenderId,
                         principalTable: "Genders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Eatings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Moment = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    FoodId = table.Column<int>(nullable: true)
+                    Moment = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    FoodId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,8 +92,7 @@ namespace FitnessApp.BL.Migrations
                         name: "FK_Eatings_Foods_FoodId",
                         column: x => x.FoodId,
                         principalTable: "Foods",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Eatings_Users_UserId",
                         column: x => x.UserId,
@@ -105,12 +105,12 @@ namespace FitnessApp.BL.Migrations
                 name: "Exercises",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Start = table.Column<DateTime>(nullable: false),
-                    Finish = table.Column<DateTime>(nullable: false),
-                    ActivityId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    Start = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Finish = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActivityId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -20,6 +20,5 @@ namespace FitnessApp.BL.Model
         public DbSet<Food> Foods { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<User> Users { get; set; }
-
     }
 }
