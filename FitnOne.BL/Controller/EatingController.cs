@@ -22,7 +22,7 @@ namespace FitnessApp.BL.Controller
         public void Add(Food food, double weight)
         {
             var product = Foods.SingleOrDefault(f => f.Name == food.Name);
-            if (product != null)
+            if (product == null)
             {
                 Foods.Add(food);
                 Eating.Add(food, weight);
@@ -30,23 +30,23 @@ namespace FitnessApp.BL.Controller
             }
             else
             {
-                Eating.Add(food, weight);
+                Eating.Add(product, weight);
                 Save();
             }
         }
         private Eating GetEating()
         {
-            return base.Load<Eating>(EATINGS_FILE_NAME) ?? new Eating(user);
+            return base.Load<Eating>().FirstOrDefault() ?? new Eating(user);
         }
 
         private List<Food> GetAllFoods()
         {
-            return base.Load<List<Food>>(FOODS_FILE_NAME) ?? new List<Food>();
+            return base.Load<Food>() ?? new List<Food>();
         }
         private void Save()
         {
-            base.Save(FOODS_FILE_NAME, Foods);
-            base.Save(EATINGS_FILE_NAME, Eating);
+            base.Save(Foods);
+            base.Save(new List<Eating>() { Eating });
         }
     }
 }

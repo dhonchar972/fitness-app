@@ -1,5 +1,8 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.BL.Model
 {
@@ -10,31 +13,42 @@ namespace FitnessApp.BL.Model
     public class Food
     {
         #region Properties
+        [Key]
+        [Column(Order = 1)]
+        public int Id { get; set; }
         /// <summary>
         /// Product name.
         /// </summary>
-        public string Name { get; }
-        /// <summary>
-        /// Amount of proteins.
-        /// </summary>
-        public double Proteins { get; }
-        /// <summary>
-        /// Amount of fats.
-        /// </summary>
-        public double Fats { get; }
-        /// <summary>
-        /// Amount of carbohydrates.
-        /// </summary>
-        public double Carbohydrates { get; }
+        [Required]
+        [Column(TypeName = "VARCHAR(50)")]
+        public string Name { get; set; }
         /// <summary>
         /// Amount of calories in 100 grams of product.
         /// </summary>
-        public double Calories { get; }
+        [Column(TypeName = "INT")]
+        public double Calories { get; set; }
+        /// <summary>
+        /// Amount of proteins.
+        /// </summary>
+        [Column(TypeName = "INT")]
+        public double Proteins { get; set; }
+        /// <summary>
+        /// Amount of fats.
+        /// </summary>
+        [Column(TypeName = "INT")]
+        public double Fats { get; set; }
+        /// <summary>
+        /// Amount of carbohydrates.
+        /// </summary>
+        [Column(TypeName = "INT")]
+        public double Carbohydrates { get; set; }
         #endregion        
         /// <summary>
         /// Create food product.
         /// </summary>
         /// <param name="name">Food name.</param>
+        public virtual ICollection<Eating> Eatings { get; set; }
+        public Food() { }
         public Food(string name) : this(name, 0.1, 0.1, 0.1, 0.1) { }
         /// <summary>
         /// Create food product.
@@ -44,17 +58,18 @@ namespace FitnessApp.BL.Model
         /// <param name="fats">Amount of fats.</param>
         /// <param name="carbohydrates">Amount of carbohydrates.</param>
         /// <param name="calories">Amount of calories.</param>
-        public Food(string name, double proteins, double fats, double carbohydrates, double calories)
+        public Food(string name, double calories, double proteins, double fats, double carbohydrates)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentNullException("Name cannot be null or empty", nameof(name));
             }
             Name = name;
+            Calories = FoodPropertiesCheck(calories);
             Proteins = FoodPropertiesCheck(proteins);
             Fats = FoodPropertiesCheck(fats);
             Carbohydrates = FoodPropertiesCheck(carbohydrates);
-            Calories = FoodPropertiesCheck(calories);
+
         }
         private double FoodPropertiesCheck(double name)
         {

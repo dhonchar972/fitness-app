@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace FitnessApp.BL.Model
@@ -11,18 +13,23 @@ namespace FitnessApp.BL.Model
     [Serializable]
     public class Eating
     {
+        [Key]
+        [Column(Order = 1)]
+        public int Id { get; set; }
         /// <summary>
         /// Eating time.
         /// </summary>
-        public DateTime Moment { get; }
+        public TimeOnly Moment { get; set; }
         /// <summary>
         /// Food and it quantity.
         /// </summary>
-        public Dictionary<Food, double> Foods { get; }
+        [NotMapped]
+        public Dictionary<Food, double> Foods { get; set; } //EROR!!!!!!11111111111111111111111111111111111111111111
         /// <summary>
         /// User.
         /// </summary>
-        public User User { get; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
         /// <summary>
         /// Creating a new eating list.
         /// </summary>
@@ -30,9 +37,10 @@ namespace FitnessApp.BL.Model
         public Eating(User user)
         {
             User = user ?? throw new ArgumentNullException("User cannot by empty", nameof(user));
-            Moment = DateTime.UtcNow;
+            Moment = TimeOnly.FromDateTime(DateTime.Now);
             Foods = new Dictionary<Food, double>();
         }
+        public Eating() { }
         /// <summary>
         /// Add food and it quantity to list.
         /// </summary>
