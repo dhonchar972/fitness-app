@@ -61,7 +61,7 @@ namespace FitnessApp.BL.Controller
         /// <param name="birthDate">User birth date.</param>
         /// <param name="weight">User weight.</param>
         /// <param name="height">User height.</param>
-        public void SetNewUserData(string genderName, DateTime birthDate, double weight = 1, double height = 1)
+        public void SetNewUserData(string genderName, DateOnly birthDate, double weight = 1, double height = 1)
         {
             //TODO: Add checkup.
             CurentUser.Gender = new Gender(genderName);

@@ -25,7 +25,7 @@ namespace FitnessApp.BL.Controller
             return base.Load<Activity>() ?? new List<Activity>();
         }
 
-        public void Add(Activity activity, DateTime start, DateTime finish)
+        public void Add(Activity activity, TimeOnly start, TimeOnly finish)
         {
             var activ = Activities.SingleOrDefault(a => a.Name == activity.Name);
             if (activ == null)

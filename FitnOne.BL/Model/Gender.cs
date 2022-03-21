@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.BL.Model
 {
@@ -10,10 +12,14 @@ namespace FitnessApp.BL.Model
     [Serializable]
     public class Gender
     {
+        [Key]
+        [Column(Order = 1)]
         public int Id { get; set; }
         /// <summary>
         /// Name of gender.
         /// </summary>
+        [Required]
+        [Column(TypeName = "VARCHAR(50)")]
         public string Name { get; set; }
         /// <summary>
         /// Create new gender.

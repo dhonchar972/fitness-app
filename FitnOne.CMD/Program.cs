@@ -13,7 +13,8 @@ namespace FitnessApp.CMD
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             var culture = CultureInfo.CurrentCulture;
-            var resourceManager = new ResourceManager("FitnessApp.CMD.Languages.Messages", typeof(Program).Assembly);
+            var resourceManager = new ResourceManager("FitnessApp.CMD.Languages.Messages", 
+                typeof(Program).Assembly);
             Console.WriteLine(resourceManager.GetString("Hello", culture));
             Thread.Sleep(3000);
             Console.Clear();
@@ -42,7 +43,7 @@ namespace FitnessApp.CMD
             {
                 Console.Write("Enter your gender: ");
                 var gender = Console.ReadLine();
-                var birthDate = ParseDateTime("birth date");
+                var birthDate = ParseDate("birth date");
                 var weight = ParseDouble("weight");
                 var height = ParseDouble("height");
                 userController.SetNewUserData(gender, birthDate, weight, height);
@@ -67,10 +68,12 @@ namespace FitnessApp.CMD
                         break;
                     case ConsoleKey.F2:
                         var exerciseParameters = EnterExercises();
-                        exerciseController.Add(exerciseParameters.activity, exerciseParameters.start, exerciseParameters.finish);
+                        exerciseController.Add(exerciseParameters.activity, exerciseParameters.start,
+                            exerciseParameters.finish);
                         foreach (var item in exerciseController.Exercises)
                         {
-                            Console.WriteLine($"\t{item.Activity} from {item.Start.ToShortTimeString()} to {item.Finish.ToShortTimeString()}");
+                            Console.WriteLine($"\t{item.Activity} from {item.Start.ToShortTimeString()} to " +
+                                $"{item.Finish.ToShortTimeString()}");
                         }
                         break;
                     case ConsoleKey.F10:
@@ -81,13 +84,13 @@ namespace FitnessApp.CMD
             }
         }
 
-        private static (DateTime start, DateTime finish, Activity activity) EnterExercises()
+        private static (TimeOnly start, TimeOnly finish, Activity activity) EnterExercises()
         {
             Console.Write("Enter exercise name: ");
             var name = Console.ReadLine();
             var caloriesPerMinute = ParseDouble("calories per minute");
-            var start = ParseDateTime("exercise start time");
-            var finish = ParseDateTime("exercise finish time");
+            var start = ParseTime("exercise start time");
+            var finish = ParseTime("exercise finish time");
             var activity = new Activity(name, caloriesPerMinute);
             return (start, finish, activity);
         }
@@ -104,14 +107,29 @@ namespace FitnessApp.CMD
             var product = new Food(name, proteins, fats, carbohydrates, calories);
             return (Food: product, Weight: weight);
         }
-
-        private static DateTime ParseDateTime(string value)
+        private static DateOnly ParseDate(string value)
         {
-            DateTime birthDate;
+            DateOnly birthDate;
             while (true)
             {
                 Console.Write($"Enter {value} (mm.dd.yyyy): ");
-                if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+                if (DateOnly.TryParse(Console.ReadLine(), out birthDate))
+                {
+                    return birthDate;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid date format");
+                }
+            }
+        }
+        private static TimeOnly ParseTime(string value)
+        {
+            TimeOnly birthDate;
+            while (true)
+            {
+                Console.Write($"Enter {value} (mm.dd.yyyy): ");
+                if (TimeOnly.TryParse(Console.ReadLine(), out birthDate))
                 {
                     return birthDate;
                 }

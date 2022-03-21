@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.BL.Model
 {
@@ -11,26 +13,34 @@ namespace FitnessApp.BL.Model
     public class Food
     {
         #region Properties
+        [Key]
+        [Column(Order = 1)]
         public int Id { get; set; }
         /// <summary>
         /// Product name.
         /// </summary>
+        [Required]
+        [Column(TypeName = "VARCHAR(50)")]
         public string Name { get; set; }
         /// <summary>
         /// Amount of calories in 100 grams of product.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Calories { get; set; }
         /// <summary>
         /// Amount of proteins.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Proteins { get; set; }
         /// <summary>
         /// Amount of fats.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Fats { get; set; }
         /// <summary>
         /// Amount of carbohydrates.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Carbohydrates { get; set; }
         #endregion        
         /// <summary>

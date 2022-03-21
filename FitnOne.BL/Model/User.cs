@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FitnessApp.BL.Model
 {
@@ -12,10 +14,14 @@ namespace FitnessApp.BL.Model
     {
 
         #region Properties
+        [Key]
+        [Column(Order=1)]
         public int Id { get; set; }
         /// <summary>
         /// User's name.
         /// </summary>
+        [Required]
+        [Column(TypeName = "VARCHAR(50)")]
         public string Name { get; set; }
         /// <summary>
         /// User's gender.
@@ -25,14 +31,16 @@ namespace FitnessApp.BL.Model
         /// <summary>
         /// User's birthday.
         /// </summary>
-        public DateTime BirthDate { get; set; } = DateTime.Now;//Need fix
+        public DateOnly BirthDate { get; set; } = DateOnly.FromDateTime(DateTime.Today);//Need fix
         /// <summary>
         /// User's weight.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Weight { get; set; }
         /// <summary>
         /// User's height.
         /// </summary>
+        [Column(TypeName = "INT")]
         public double Height { get; set; }
 
         /* 
@@ -55,7 +63,7 @@ namespace FitnessApp.BL.Model
         /// <param name="birthDate">User's birthday.</param>
         /// <param name="weight">User's weight.</param>
         /// <param name="height">User's height.</param>
-        public User(string name, Gender gender, DateTime birthDate, double weight, double height)
+        public User(string name, Gender gender, DateOnly birthDate, double weight, double height)
         {
             #region Parameter sheck
             if (string.IsNullOrWhiteSpace(name))
@@ -66,7 +74,7 @@ namespace FitnessApp.BL.Model
             {
                 throw new ArgumentNullException("Gender cannot be null or empty", nameof(gender));
             }
-            if ((birthDate < DateTime.Parse("01.01.1900")) || (birthDate >= DateTime.Now))
+            if ((birthDate < DateOnly.Parse("01.01.1900")) || (birthDate >= DateOnly.FromDateTime(DateTime.Now)))
             {
                 throw new ArgumentException("Invalid date input", nameof(birthDate));
             }
